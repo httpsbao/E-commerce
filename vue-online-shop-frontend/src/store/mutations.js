@@ -21,8 +21,20 @@ import {
   UPDATE_MANUFACTURER_SUCCESS,
   REMOVE_MANUFACTURER,
   REMOVE_MANUFACTURER_SUCCESS,
+  SET_USER,
+  UPDATE_USER,
+  LOGOUT
 } from './mutation-types';
 import { Message } from 'element-ui';
+
+export const userMutations = {
+  [SET_USER](state, payload) {
+    state.user = payload;
+  },
+  [LOGOUT](state) {
+    state.user = {};
+  }
+};
 
 export const productMutations = {
   [ALL_PRODUCTS](state) {
@@ -50,7 +62,9 @@ export const productMutations = {
     state.showLoader = false;
 
     const { productId } = payload;
-    state.products = state.products.filter(product => product._id !== productId);
+    state.products = state.products.filter(
+      product => product._id !== productId
+    );
   },
   [UPDATE_PRODUCT](state) {
     state.showLoader = true;
@@ -125,7 +139,9 @@ export const manufacturerMutations = {
     state.showLoader = false;
 
     const { manufacturerId } = payload;
-    state.manufacturers = state.manufacturers.filter(manufacturer => manufacturer._id !== manufacturerId);
+    state.manufacturers = state.manufacturers.filter(
+      manufacturer => manufacturer._id !== manufacturerId
+    );
   },
   [UPDATE_MANUFACTURER](state) {
     state.showLoader = true;
